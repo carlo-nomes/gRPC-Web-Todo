@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+service TodoService {
+  rpc GetTodos(GetTodosRequest) returns (GetTodosResponse) {};
+
+  rpc AddTodo(AddTodoRequest) returns (AddTodoResponse) {};
+
+  rpc FinishTodo(FinishTodoRequest) returns (FinishTodoResponse) {};
+}
+
+message Todo {
+  string id = 1;
+  string text = 2;
+  bool done = 3;
+}
+
+message GetTodosRequest {}
+
+message GetTodosResponse { repeated Todo todos = 1; }
+
+message AddTodoRequest { string text = 1; }
+
+message AddTodoResponse { Todo todo = 1; }
+
+message FinishTodoRequest { string id = 1; }
+
+message FinishTodoResponse { Todo todo = 1; }
